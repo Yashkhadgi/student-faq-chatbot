@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {"label":"admission",   "examples":["how to apply","admission form","enrollment date","registration process"]},
+    {"label":"fee",         "examples":["fee structure","how much is tuition","payment details","cost of course"]},
+    {"label":"exam",        "examples":["when are exams","exam schedule","test dates","examination timetable"]},
+    {"label":"schedule",    "examples":["class timetable","lecture timing","when is CS-301","room number"]},
+    {"label":"contact",     "examples":["contact office","email address","phone number","how to reach"]},
+    {"label":"hostel",      "examples":["hostel facility","accommodation available","boys hostel","room fees"]},
+    {"label":"attendance",  "examples":["attendance requirement","minimum attendance","how many classes"]},
+    {"label":"scholarship", "examples":["apply for scholarship","financial aid","merit scholarship"]},
+    {"label":"result",      "examples":["when is result","check marks","semester result","grade announcement"]}
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {"id":1,"question":"What is the last date to submit the admission form?","answer":"The last date to submit the admission form is 30th June 2025.","intent":"admission","tags":["admission","form","deadline","date"]},
+  {"id":2,"question":"What is the fee structure for BTech?","answer":"The BTech fee is Rs. 1,20,000 per semester including tuition, library, and lab fees.","intent":"fee","tags":["fee","btech","tuition","cost"]},
+  {"id":3,"question":"When are the semester exams scheduled?","answer":"Semester exams are from 15th November to 30th November 2025.","intent":"exam","tags":["exam","semester","schedule","date"]},
+  {"id":4,"question":"How do I contact the admissions office?","answer":"Email admissions@university.edu or call +91-9876543210 between 9AM-5PM.","intent":"contact","tags":["contact","admissions","email","phone"]},
+  {"id":5,"question":"What documents are required for admission?","answer":"10th & 12th marksheets, transfer certificate, 4 passport photos, ID proof.","intent":"admission","tags":["documents","admission","certificates","marksheet"]},
+  {"id":6,"question":"Is there a hostel facility available?","answer":"Yes, separate hostels for boys and girls. Fees are Rs. 60,000 per year including meals.","intent":"hostel","tags":["hostel","accommodation","boys","girls","stay"]},
+  {"id":7,"question":"What is the attendance requirement?","answer":"Minimum 75% attendance is mandatory in each subject.","intent":"attendance","tags":["attendance","percentage","mandatory","requirement"]},
+  {"id":8,"question":"How can I apply for a scholarship?","answer":"Submit scholarship applications via the student portal before 31st August.","intent":"scholarship","tags":["scholarship","apply","merit","financial","portal"]},
+  {"id":9,"question":"What is the timetable for CS-301?","answer":"CS-301 classes are Monday, Wednesday, Friday 10AM-11AM in Room 204.","intent":"schedule","tags":["timetable","CS-301","schedule","class","timing"]},
+  {"id":10,"question":"When is the result of the last semester announced?","answer":"Results are announced within 30 days after the last exam on the student portal.","intent":"result","tags":["result","semester","announcement","portal","marks"]}
+]

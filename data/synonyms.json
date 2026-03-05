@@ -1,0 +1,12 @@
+{
+  "fee":        ["tuition","charges","cost","price","payment","fees"],
+  "exam":       ["test","assessment","evaluation","paper","examination"],
+  "admission":  ["enrollment","joining","registration","apply","application"],
+  "hostel":     ["accommodation","dorm","dormitory","residence","stay"],
+  "schedule":   ["timetable","timing","slots","calendar","routine"],
+  "result":     ["marks","grades","score","performance","outcome"],
+  "contact":    ["reach","call","email","phone","connect","helpdesk"],
+  "scholarship":["financial aid","grant","stipend","bursary","award"],
+  "attendance": ["presence","participation","regularity"],
+  "documents":  ["certificates","papers","proof","records","marksheet"]
+}
