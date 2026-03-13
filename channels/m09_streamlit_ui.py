@@ -1,9 +1,89 @@
-# M-09 | Owner: Member C
+# M-09: Streamlit Chat UI
+# Owner: Member C
+# Purpose: Web-based chat interface for the FAQ chatbot
+# Run with: streamlit run channels/m09_streamlit_ui.py
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import streamlit as st
+from modules.m02_preprocessor      import preprocess
+from modules.m03_synonym_expander   import expand_synonyms
+from modules.m04_tfidf_retrieval    import retrieve
+from modules.m05_intent_classifier  import classify_intent
+from modules.m06_entity_extractor   import extract_entities
+from modules.m07_context_manager    import update_context, enrich_with_context
+from modules.m08_fallback_handler   import handle_fallback
+from analytics.m10_analytics_logger import log_event
+from config import CONFIDENCE_THRESHOLD
 
-def main():
-    st.title("Student FAQ Chatbot")
-    raise NotImplementedError("Member C: implement Streamlit UI")
+def process_query(raw_query: str, session: dict) -> dict:
+    tokens          = preprocess(raw_query)
+    enriched        = enrich_with_context(raw_query, tokens, session)
+    expanded_tokens = expand_synonyms(enriched["tokens"])
+    intent          = classify_intent(enriched["tokens"])
+    entities        = extract_entities(raw_query)
+    results         = retrieve(expanded_tokens)
 
-if __name__ == "__main__":
-    main()
+    if results and results[0]["score"] >= CONFIDENCE_THRESHOLD:
+        answer = results[0]["answer"]
+        status = "answered"
+    else:
+        answer = handle_fallback(raw_query, results)
+        status = "fallback"
+
+    update_context(session, raw_query, answer, intent, entities)
+    log_event(raw_query, intent, entities, results[0]["score"] if results else 0, status)
+
+    return {
+        "answer":      answer,
+        "intent":      intent,
+        "status":      status,
+        "top_matches": results
+    }
+
+# ─── Streamlit UI ─────────────────────────────────────────────────────────────
+
+st.set_page_config(
+    page_title="Student FAQ Chatbot",
+    page_icon="🎓",
+    layout="centered"
+)
+
+st.title("🎓 Student FAQ Chatbot")
+st.caption("Ask me anything about admissions, fees, exams, schedules & more!")
+
+# Initialize session state
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+if "session" not in st.session_state:
+    st.session_state.session = {"history": []}
+
+# Display chat history
+for msg in st.session_state.chat_history:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["content"])
+
+# Chat input
+if prompt := st.chat_input("Type your question here..."):
+
+    # Show user message
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    st.session_state.chat_history.append({"role": "user", "content": prompt})
+
+    # Get bot response
+    with st.spinner("Thinking..."):
+        response = process_query(prompt, st.session_state.session)
+
+    # Show bot response
+    with st.chat_message("assistant"):
+        st.markdown(response["answer"])
+        st.caption(f"Intent: `{response['intent']}` | Status: `{response['status']}`")
+
+    st.session_state.chat_history.append({
+        "role":    "assistant",
+        "content": response["answer"]
+    })

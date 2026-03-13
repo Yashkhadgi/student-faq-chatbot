@@ -14,3 +14,10 @@ def load_synonyms():
 def load_intents():
     with open(INTENTS_PATH, "r") as f:
         return json.load(f)
+2026-03-13 10:38:18,what is btech fees,unknown,"{'course': [], 'date': [], 'dept': []}",0.399,answered
+2026-03-13 10:38:49,When are the semester exams?,unknown,"{'course': [], 'date': [], 'dept': []}",0.7064,answered
+2026-03-13 10:38:58,Is there a hostel?,hostel,"{'course': [], 'date': [], 'dept': []}",0.5136,answered
+2026-03-13 10:39:18,What documents do I need for admission?,admission,"{'course': [], 'date': [], 'dept': []}",0.4375,answered
+2026-03-13 10:39:39,"git add modules/ analytics/ channels/ utils/
+git commit -m ""feat: all modules integrated and working - full pipeline demo ready""
+git push origin feature/streamlit-ui",admission,"{'course': [], 'date': [], 'dept': []}",0.0862,fallback
