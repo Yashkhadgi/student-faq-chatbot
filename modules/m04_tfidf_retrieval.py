@@ -1,29 +1,34 @@
-# M-04: TF-IDF Retrieval
+# M-04: TF-IDF Retrieval — vectorizer fitted ONCE at module load
+import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from utils.helpers import load_faqs
 from config import TFIDF_TOP_N
 
+# ── Fit vectorizer once on all FAQ questions + tags ───────────────────────────
+_faqs   = load_faqs()
+_corpus = [faq["question"] + " " + " ".join(faq.get("tags", [])) for faq in _faqs]
+_vectorizer   = TfidfVectorizer()
+_faq_matrix   = _vectorizer.fit_transform(_corpus)   # shape: (n_faqs, vocab)
+
+
 def retrieve(tokens: list) -> list:
-    faqs = load_faqs()
-    corpus = []
-    for faq in faqs:
-        tags = " ".join(faq.get("tags", []))
-        corpus.append(faq["question"] + " " + tags)
-    query_string = " ".join(tokens)
-    vectorizer = TfidfVectorizer()
-    all_docs = corpus + [query_string]
-    tfidf_matrix = vectorizer.fit_transform(all_docs)
-    query_vector = tfidf_matrix[-1]
-    faq_vectors  = tfidf_matrix[:-1]
-    scores = cosine_similarity(query_vector, faq_vectors).flatten()
-    top_indices = scores.argsort()[::-1][:TFIDF_TOP_N]
+    """
+    Transform the query tokens against the pre-fitted vectorizer.
+    Returns top-N FAQs with cosine similarity scores.
+    """
+    query_string  = " ".join(tokens)
+    query_vector  = _vectorizer.transform([query_string])   # transform only — no refit
+    scores        = cosine_similarity(query_vector, _faq_matrix).flatten()
+    top_indices   = scores.argsort()[::-1][:TFIDF_TOP_N]
+
     results = []
     for i in top_indices:
         results.append({
-            "id":       faqs[i]["id"],
-            "question": faqs[i]["question"],
-            "answer":   faqs[i]["answer"],
+            "id":       _faqs[i]["id"],
+            "question": _faqs[i]["question"],
+            "answer":   _faqs[i]["answer"],
+            "intent":   _faqs[i].get("intent", "unknown"),
             "score":    round(float(scores[i]), 4)
         })
     return results

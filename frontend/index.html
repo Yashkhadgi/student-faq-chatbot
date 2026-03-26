@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIT EduBot - Symbiosis Institute of Technology, Nagpur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A1628;
+            --surface: #0D1F3C;
+            --border: #1E3A5F;
+            --accent: #FF6B35;
+            --bot-bubble: #162D4E;
+            --bot-text: #C8D8EE;
+            --user-bubble: #E8EEFF;
+            --user-text: #1A2640;
+            --info-blue: #7EB8F7;
+            --muted-text: #5A7FA8;
+            --text-white: #FFFFFF;
+            
+            --wa-header: #1F2C34;
+            --wa-bg: #0D1821;
+            --wa-bot: #1F2C34;
+            --wa-user: #005C4B;
+            --wa-accent: #00A884;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-white);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            height: 60px;
+            background-color: var(--surface);
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+
+        .top-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-sq {
+            width: 32px;
+            height: 32px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        .app-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 10px;
+            color: var(--muted-text);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 24px;
+            height: 100%;
+        }
+
+        .tab {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0 8px;
+            color: var(--muted-text);
+            font-weight: 500;
+            transition: 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab:hover {
+            color: var(--text-white);
+        }
+
+        .tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .api-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--info-blue);
+        }
+
+        .dot-green {
+            width: 8px;
+            height: 8px;
+            background-color: #22C55E;
+            border-radius: 50%;
+        }
+
+        /* MAIN LAYOUT */
+        .main-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tab-panel {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tab-panel.active {
+            display: flex;
+        }
+
+        /* TAB 1: CHAT */
+        .sidebar {
+            width: 220px;
+            background-color: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 24px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-section h3 {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--muted-text);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        .intent-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .intent-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: var(--info-blue);
+            color: var(--surface);
+            width: fit-content;
+        }
+
+        .conf-pct {
+            font-size: 11px;
+            color: var(--text-white);
+            margin-left: 4px;
+        }
+
+        .prog-bg {
+            height: 4px;
+            background-color: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .prog-fill {
+            height: 100%;
+            background-color: var(--accent);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .entity-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .tag-pill {
+            background-color: var(--border);
+            color: var(--info-blue);
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .entity-val {
+            font-size: 12px;
+            color: var(--text-white);
+        }
+
+        .context-row {
+            font-size: 10px;
+            color: var(--muted-text);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            padding-left: 8px;
+            border-left: 1px solid var(--border);
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg);
+        }
+
+        .msg-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .msg-row {
+            display: flex;
+            max-width: 80%;
+            gap: 12px;
+        }
+
+        .msg-row.bot {
+            align-self: flex-start;
+        }
+
+        .msg-row.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .avatar.bot {
+            background-color: var(--surface);
+            color: var(--info-blue);
+            border: 1px solid var(--border);
+        }
+
+        .avatar.user {
+            background-color: var(--accent);
+            color: #FFF;
+        }
+
+        .bubble-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .bubble {
+            padding: 12px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .msg-row.bot .bubble {
+            background-color: var(--bot-bubble);
+            color: var(--bot-text);
+            border: 1px solid var(--border);
+            border-radius: 0px 12px 12px 12px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg-row.user .bubble {
+            background-color: var(--user-bubble);
+            color: var(--user-text);
+            border-radius: 12px 12px 0px 12px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-row.error .bubble {
+            background-color: #3b1d1d;
+            color: #ff8a8a;
+            border-color: #7a2c2c;
+        }
+
+        .msg-time {
+            font-size: 10px;
+            color: var(--muted-text);
+        }
+
+        .msg-row.user .msg-time {
+            text-align: right;
+        }
+
+        /* Typing Dots */
+        .typing {
+            display: none;
+            padding: 12px 16px;
+            background-color: var(--bot-bubble);
+            border: 1px solid var(--border);
+            border-radius: 4px 12px 12px 12px;
+            gap: 4px;
+            width: fit-content;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--muted-text);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .chips-row {
+            display: flex;
+            gap: 10px;
+            padding: 10px 24px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .chips-row::-webkit-scrollbar { display: none; }
+
+        .chip {
+            padding: 6px 14px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--info-blue);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .input-bar {
+            padding: 12px 24px 24px;
+            background-color: var(--bg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .txt-input {
+            flex: 1;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-white);
+            outline: none;
+            resize: none;
+            max-height: 120px;
+        }
+
+        .txt-input:focus {
+            border-color: var(--info-blue);
+        }
+
+        .btn-send {
+            width: 44px;
+            height: 44px;
+            background-color: var(--accent);
+            border: none;
+            border-radius: 8px;
+            color: #FFF;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        /* TAB 2: WHATSAPP */
+        .wa-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .phone {
+            width: 360px;
+            height: 700px;
+            background-color: #000;
+            border: 3px solid #333;
+            border-radius: 32px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .wa-top {
+            background-color: var(--wa-header);
+            padding: 40px 16px 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .wa-avatar {
+            width: 36px;
+            height: 36px;
+            background-color: #444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .wa-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wa-name {
+            font-weight: 500;
+            color: #FFF;
+            font-size: 15px;
+        }
+
+        .wa-status {
+            font-size: 11px;
+            color: #22c55e;
+        }
+
+        .wa-body {
+            flex: 1;
+            background-color: var(--wa-bg);
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .wa-msg {
+            max-width: 85%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .wa-msg.in {
+            background-color: var(--wa-bot);
+            color: #E9EDEF;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+
+        .wa-msg.out {
+            background-color: var(--wa-user);
+            color: #E9EDEF;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+
+        .wa-time {
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        .wa-bottom {
+            background-color: var(--wa-header);
+            padding: 10px 12px 24px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .wa-input {
+            flex: 1;
+            background-color: #2c3943;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 16px;
+            color: #FFF;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .wa-btn {
+            width: 40px;
+            height: 40px;
+            background-color: var(--wa-accent);
+            border-radius: 50%;
+            color: #FFF;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* TAB 3: ANALYTICS */
+        .dash {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .card-num {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .card-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--muted-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .trend {
+            font-size: 11px;
+            margin-top: 12px;
+            display: flex;
+            items-center: center;
+            gap: 4px;
+        }
+
+        .trend.up { color: #22c55e; }
+        .trend.down { color: #ef4444; }
+
+        .chart-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .chart-box {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--muted-text);
+        }
+
+        .bar-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .bar-label {
+            width: 80px;
+            font-size: 12px;
+            color: var(--info-blue);
+            text-align: right;
+            text-transform: capitalize;
+        }
+
+        .bar-rail {
+            flex: 1;
+            height: 12px;
+            background-color: var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background-color: var(--accent);
+            transition: width 0.5s ease;
+        }
+
+        .table-section {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: rgba(255,255,255,0.02);
+            text-align: left;
+            padding: 12px 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--muted-text);
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px 20px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .intent-tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 640px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .tabs {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                height: 60px;
+                justify-content: space-around;
+                border-top: 1px solid var(--border);
+                border-bottom: none;
+                z-index: 1000;
+            }
+            
+            .tab {
+                border-bottom: none;
+                border-top: 3px solid transparent;
+                font-size: 12px;
+            }
+            
+            .tab.active {
+                border-top-color: var(--accent);
+            }
+
+            .stat-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .msg-list {
+                padding-bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="top-left">
+            <div class="logo-sq">S</div>
+            <div class="app-info">
+                <span class="app-name">SIT EduBot</span>
+                <span class="subtitle">Symbiosis Institute of Technology, Nagpur</span>
+            </div>
+        </div>
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('chat')">Chat</div>
+            <div class="tab" onclick="showTab('whatsapp')">WhatsApp</div>
+            <div class="tab" onclick="showTab('analytics')">Analytics</div>
+        </div>
+        <div class="api-status">
+            <div class="dot-green"></div>
+            <span>API Online · Port 5001</span>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- TAB 1: CHAT -->
+        <div id="panel-chat" class="tab-panel active">
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Detected Intent</h3>
+                    <div class="intent-block">
+                        <div>
+                            <span class="intent-badge" id="side-intent">Unknown</span>
+                            <span class="conf-pct" id="side-conf">0%</span>
+                        </div>
+                        <div class="prog-bg">
+                            <div class="prog-fill" id="side-prog"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <h3>Entities Found</h3>
+                    <div id="side-entities">
+                        <div class="context-row">No entities yet.</div>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <h3>Context (Last 3)</h3>
+                    <div id="side-context"></div>
+                </div>
+            </aside>
+            <div class="chat-container">
+                <div class="msg-list" id="chat-messages">
+                    <div class="msg-row bot">
+                        <div class="avatar bot">S</div>
+                        <div class="bubble-wrap">
+                            <div class="bubble">Hello! I'm your SIT Nagpur assistant. How can I help you today?</div>
+                            <div class="msg-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Typing Ind -->
+                <div id="chat-typing-row" style="padding-left: 24px; padding-bottom: 10px; display: none;">
+                    <div class="typing" style="display: flex;">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+                <div class="chips-row">
+                    <div class="chip" onclick="sendQuery('Fees')">Fees</div>
+                    <div class="chip" onclick="sendQuery('Exam Schedule')">Exam Schedule</div>
+                    <div class="chip" onclick="sendQuery('Hostel')">Hostel</div>
+                    <div class="chip" onclick="sendQuery('Admissions')">Admissions</div>
+                    <div class="chip" onclick="sendQuery('Library')">Library</div>
+                    <div class="chip" onclick="sendQuery('Scholarships')">Scholarships</div>
+                </div>
+                <div class="input-bar">
+                    <textarea id="chat-textarea" class="txt-input" rows="1" placeholder="Ask anything about SIT Nagpur..." onkeydown="handleKey(event)"></textarea>
+                    <button class="btn-send" onclick="sendChat()">➤</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: WHATSAPP -->
+        <div id="panel-whatsapp" class="tab-panel">
+            <div class="wa-wrap">
+                <div class="phone">
+                    <div class="wa-top">
+                        <div class="wa-avatar">🏫</div>
+                        <div class="wa-info">
+                            <span class="wa-name">SIT EduBot</span>
+                            <span class="wa-status">online</span>
+                        </div>
+                    </div>
+                    <div class="wa-body" id="wa-messages">
+                        <div class="wa-msg in">
+                            Hello! Welcome to SIT Nagpur. Ask me anything.
+                            <div class="wa-time">09:00 AM</div>
+                        </div>
+                    </div>
+                    <div class="wa-bottom">
+                        <input type="text" id="wa-input" class="wa-input" placeholder="Type a message" onkeydown="handleWaKey(event)">
+                        <button class="wa-btn" onclick="sendWa()">➤</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: ANALYTICS -->
+        <div id="panel-analytics" class="tab-panel">
+            <div class="dash">
+                <div class="stat-row">
+                    <div class="card">
+                        <span class="card-num" id="stat-total">0</span>
+                        <span class="card-label">Total Queries</span>
+                        <div class="trend up">▲ Live</div>
+                    </div>
+                    <div class="card">
+                        <span class="card-num" id="stat-top" style="font-size: 20px;">None</span>
+                        <span class="card-label">Top Intent</span>
+                        <div class="trend up">▲ Popular</div>
+                    </div>
+                    <div class="card">
+                        <span class="card-num" id="stat-conf">0.00</span>
+                        <span class="card-label">Avg Confidence</span>
+                        <div class="trend" id="conf-trend">● Stable</div>
+                    </div>
+                    <div class="card">
+                        <span class="card-num" id="stat-fall">0%</span>
+                        <span class="card-label">Fallback Rate</span>
+                        <div class="trend" id="fall-trend">▼ Tracked</div>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <div class="chart-box">
+                        <h4 class="chart-title">Intent Distribution</h4>
+                        <div class="bar-wrap" id="chart-bars">
+                            <!-- Bars injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Query</th>
+                                <th>Intent</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-table">
+                            <!-- Rows injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const sessionId = "sess-" + Math.random().toString(36).substr(2, 9);
+        let chatContext = [];
+
+        function showTab(id) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('panel-' + id).classList.add('active');
+            event.currentTarget.classList.add('active');
+            if (id === 'analytics') refreshAnalytics();
+        }
+
+        function getTime() {
+            return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        /* CHAT LOGIC */
+        async function sendChat() {
+            const inp = document.getElementById('chat-textarea');
+            const txt = inp.value.trim();
+            if (!txt) return;
+            inp.value = '';
+            
+            renderMsg('user', txt);
+            document.getElementById('chat-typing-row').style.display = 'block';
+            scrollChat();
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: txt, session_id: sessionId })
+                });
+                const data = await res.json();
+                document.getElementById('chat-typing-row').style.display = 'none';
+                
+                if (res.ok) {
+                    renderMsg('bot', data.answer);
+                    updateSidebar(data, txt);
+                } else {
+                    renderMsg('bot', 'Something went wrong. Please try again.', true);
+                }
+            } catch (err) {
+                document.getElementById('chat-typing-row').style.display = 'none';
+                renderMsg('bot', 'Something went wrong. Please try again.', true);
+            }
+        }
+
+        function renderMsg(sender, text, isError = false) {
+            const list = document.getElementById('chat-messages');
+            const row = document.createElement('div');
+            row.className = `msg-row ${sender} ${isError ? 'error' : ''}`;
+            const avatar = sender === 'bot' ? 'S' : 'Y';
+            
+            row.innerHTML = `
+                <div class="avatar ${sender}">${avatar}</div>
+                <div class="bubble-wrap">
+                    <div class="bubble">${text}</div>
+                    <div class="msg-time">${getTime()}</div>
+                </div>
+            `;
+            list.appendChild(row);
+            scrollChat();
+        }
+
+        function sendQuery(txt) {
+            document.getElementById('chat-textarea').value = txt;
+            sendChat();
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendChat();
+            }
+        }
+
+        function scrollChat() {
+            const list = document.getElementById('chat-messages');
+            list.scrollTop = list.scrollHeight;
+        }
+
+        function updateSidebar(data, query) {
+            document.getElementById('side-intent').innerText = data.intent || 'Unknown';
+            const cpct = Math.round((data.confidence || 0) * 100);
+            document.getElementById('side-conf').innerText = cpct + '%';
+            document.getElementById('side-prog').style.width = cpct + '%';
+
+            // Entities
+            const entBox = document.getElementById('side-entities');
+            entBox.innerHTML = '';
+            const ents = data.entities || {};
+            let found = false;
+            
+            for (const [key, vals] of Object.entries(ents)) {
+                if (Array.isArray(vals) && vals.length > 0) {
+                    found = true;
+                    vals.forEach(v => {
+                        const row = document.createElement('div');
+                        row.className = 'entity-row';
+                        row.innerHTML = `<span class="tag-pill">${key.toUpperCase()}</span><span class="entity-val">${v}</span>`;
+                        entBox.appendChild(row);
+                    });
+                }
+            }
+            if (!found) entBox.innerHTML = '<div class="context-row">No entities found.</div>';
+
+            // Context
+            chatContext.push({ q: query, i: data.intent });
+            if (chatContext.length > 3) chatContext.shift();
+            
+            const ctxBox = document.getElementById('side-context');
+            ctxBox.innerHTML = '';
+            chatContext.slice().reverse().forEach(c => {
+                const row = document.createElement('div');
+                row.className = 'context-row';
+                row.innerHTML = `<strong>${c.i}</strong>: ${c.q}`;
+                ctxBox.appendChild(row);
+            });
+        }
+
+        /* WHATSAPP LOGIC */
+        async function sendWa() {
+            const inp = document.getElementById('wa-input');
+            const txt = inp.value.trim();
+            if (!txt) return;
+            inp.value = '';
+
+            const list = document.getElementById('wa-messages');
+            const row = document.createElement('div');
+            row.className = 'wa-msg out';
+            row.innerHTML = `${txt}<div class="wa-time">${getTime()}</div>`;
+            list.appendChild(row);
+            list.scrollTop = list.scrollHeight;
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: txt, session_id: sessionId + "_wa" })
+                });
+                const data = await res.json();
+                const bRow = document.createElement('div');
+                bRow.className = 'wa-msg in';
+                bRow.innerHTML = `${data.answer}<div class="wa-time">${getTime()}</div>`;
+                list.appendChild(bRow);
+                list.scrollTop = list.scrollHeight;
+            } catch (err) {}
+        }
+
+        function handleWaKey(e) {
+            if (e.key === 'Enter') sendWa();
+        }
+
+        /* ANALYTICS LOGIC */
+        const intentColors = {
+            'fee': '#3B82F6',
+            'exam': '#10B981',
+            'admission': '#F59E0B',
+            'hostel': '#8B5CF6',
+            'timetable': '#EC4899',
+            'scholarship': '#F43F5E',
+            'library': '#06B6D4'
+        };
+
+        async function refreshAnalytics() {
+            try {
+                const res = await fetch('/api/analytics?limit=10');
+                const data = await res.json();
+                if (!res.ok) return;
+
+                const s = data.summary;
+                document.getElementById('stat-total').innerText = s.total_queries;
+                document.getElementById('stat-top').innerText = s.most_common_intent || 'None';
+                document.getElementById('stat-conf').innerText = s.avg_confidence.toFixed(2);
+                document.getElementById('stat-fall').innerText = s.fallback_rate + '%';
+
+                // Chart
+                const chart = document.getElementById('chart-bars');
+                chart.innerHTML = '';
+                const dist = s.intent_distribution;
+                const order = ['fee', 'exams', 'admissions', 'hostel', 'timetable', 'scholarships', 'library'];
+                
+                // Map API names to human names if needed
+                const mapping = { 'exams': 'exam', 'admissions': 'admission', 'scholarships': 'scholarship' };
+
+                const max = Math.max(...Object.values(dist), 1);
+                order.forEach(id => {
+                    const apiKey = id;
+                    const colorKey = mapping[id] || id;
+                    const val = dist[apiKey] || 0;
+                    const pct = (val / max) * 100;
+                    
+                    const row = document.createElement('div');
+                    row.className = 'bar-row';
+                    row.innerHTML = `
+                        <div class="bar-label">${id}</div>
+                        <div class="bar-rail">
+                            <div class="bar-fill" style="width: ${pct}%; background-color: ${intentColors[colorKey] || '#5A7FA8'}"></div>
+                        </div>
+                    `;
+                    chart.appendChild(row);
+                });
+
+                // Table
+                const table = document.getElementById('logs-table');
+                table.innerHTML = '';
+                data.logs.reverse().forEach(log => {
+                    const row = document.createElement('tr');
+                    const score = parseFloat(log.score) || 0;
+                    const sColor = score > 0.8 ? '#22c55e' : (score > 0.5 ? '#f59e0b' : '#ef4444');
+                    const iColor = intentColors[log.intent] || '#5A7FA8';
+                    
+                    row.innerHTML = `
+                        <td style="color: var(--muted-text)">${log.timestamp.split(' ')[1]}</td>
+                        <td>${log.query}</td>
+                        <td><span class="intent-tag" style="background-color: ${iColor}33; color: ${iColor}">${log.intent}</span></td>
+                        <td style="color: ${sColor}; font-weight: 600">${score.toFixed(2)}</td>
+                    `;
+                    table.appendChild(row);
+                });
+
+            } catch (err) {}
+        }
+
+        setInterval(() => {
+            if (document.getElementById('panel-analytics').classList.contains('active')) {
+                refreshAnalytics();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

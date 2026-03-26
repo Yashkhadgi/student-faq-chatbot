@@ -1,13 +1,17 @@
-# M-03: Synonym Expander
+# M-03: Synonym Expander — unchanged, works correctly
 from utils.helpers import load_synonyms
 
 def expand_synonyms(tokens: list) -> list:
+    """
+    Expand each token with its known synonyms.
+    Deduplicates while preserving original order.
+    """
     synonyms = load_synonyms()
     expanded = list(tokens)
     for token in tokens:
         if token in synonyms:
             expanded.extend(synonyms[token])
-    seen = set()
+    seen   = set()
     result = []
     for word in expanded:
         if word not in seen:

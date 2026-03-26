@@ -1,11 +1,40 @@
-# M-08: Fallback Handler
+# M-08: Fallback Handler — SIT Nagpur branding + WhatsApp routing
 from config import FALLBACK_CLARIFY, FALLBACK_ESCALATE
 
+_LOW_CONFIDENCE_THRESHOLD = 0.05
+
+
 def handle_fallback(query: str, candidates: list) -> str:
+    """
+    Determine the best fallback response:
+      1. If no candidates at all → restate / ask to rephrase
+      2. If there are low-confidence candidates → suggest top 2 questions
+      3. If even suggestions are empty → escalate to SIT helpdesk
+
+    Args:
+        query:      The original user query (unused in message but available for future use)
+        candidates: List of TF-IDF result dicts with 'question' and 'score' keys
+
+    Returns:
+        A human-readable fallback string.
+    """
     if not candidates:
         return FALLBACK_CLARIFY
-    top_candidates = [c for c in candidates if c["score"] > 0.05]
-    if top_candidates:
-        suggestions = "\n".join([f"  {i+1}. {c['question']}" for i, c in enumerate(top_candidates[:2])])
-        return f"I'm not sure I understood. Did you mean:\n{suggestions}\nPlease rephrase or choose one of the above."
+
+    # Filter candidates that have at least a tiny signal
+    weak_candidates = [c for c in candidates if c["score"] > _LOW_CONFIDENCE_THRESHOLD]
+
+    if weak_candidates:
+        suggestion_lines = "\n".join(
+            f"  {i + 1}. {c['question']}"
+            for i, c in enumerate(weak_candidates[:2])
+        )
+        return (
+            "🤔 I'm not quite sure I understood your question. "
+            "Did you mean one of these?\n\n"
+            f"{suggestion_lines}\n\n"
+            "Please rephrase your question or choose one of the above."
+        )
+
+    # Full escalation to SIT helpdesk
     return FALLBACK_ESCALATE
