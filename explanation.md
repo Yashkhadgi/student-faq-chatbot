@@ -90,3 +90,22 @@ It proves to them that you orchestrated the entire pipeline step-by-step:
 7. `retrieve()` (M4: TF-IDF Search)
 8. `handle_fallback()` (M8: Error routing)
 9. `log_event()` (M10: Save Analytics)
+
+---
+
+# 🔍 SIT EduBot Module Testing Guide
+
+Use these exact queries to demonstrate each module during the faculty viva.
+
+| Module | What to Type (Input) | Expected Result (Output) |
+| :--- | :--- | :--- |
+| **M1: Rule-Based** | "SIT Nagpur location" | Direct address of the campus. |
+| **M2: Preprocessing** | "fEeS??!!" | Bot ignores '!!' and Caps, answers about Fees. |
+| **M3: Synonyms** | "tuition cost" or "payment" | Maps both to the "Fees" answer. |
+| **M4: TF-IDF** | "What is the procedure for admission?" | Finds the most 'similar' answer in the database. |
+| **M5: Intent** | "Where can I sleep?" | Recognizes intent = "Hostel" in the sidebar. |
+| **M6: NER** | "CS 3rd sem syllabus" | Extracts 'CS' (Branch) and '3rd' (Sem) shown in sidebar. |
+| **M7: Context** | "When is the exam?" -> "And for 2nd year?" | Bot remembers 'Exam' from the first question. |
+| **M8: Fallback** | "How to fly a plane?" | "I'm not sure... Please contact helpdesk@sitng.ac.in" |
+| **M9: Mockup** | (Show the interface) | Web Chat, WhatsApp Simulator, and Analytics Dashboard. |
+| **M10: Logs** | (Go to Analytics Tab) | Shows real-time updating list of past queries and intent statistics. |
