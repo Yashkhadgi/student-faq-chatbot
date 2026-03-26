@@ -13,10 +13,10 @@ _ORDINAL_MAP = {
 _DEPT_PATTERNS = {
     "CS":          r"\bcs\b|\bcomputer science\b|\bcomp sci\b",
     "IT":          r"\bit\b|\binformation technology\b",
-    "ENTC":        r"\bentc\b|\belectronics\b|\belectronics and telecom\b",
+    "Robotics":    r"\brobotics\b",
+    "AI-ML":       r"\bai-ml\b|\bai ml\b|\bartificial intelligence\b|\bmachine learning\b|\baiml\b",
     "Mechanical":  r"\bmech\b|\bmechanical\b",
     "Civil":       r"\bcivil\b",
-    "AIDS":        r"\baids\b|\bartificial intelligence\b|\bai\b|\bdata science\b",
 }
 
 

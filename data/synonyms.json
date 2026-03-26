@@ -1,8 +1,8 @@
 {
-  "fee":        ["tuition","charges","cost","price","payment","fees"],
+  "fee":        ["tuition", "payment", "charges", "cost", "fees", "price"],
   "exam":       ["test","assessment","evaluation","paper","examination"],
-  "admission":  ["enrollment","joining","registration","apply","application"],
-  "hostel":     ["accommodation","dorm","dormitory","residence","stay"],
+  "admission":  ["join", "entrance", "enrollment", "apply", "registration", "admission"],
+  "hostel":     ["accommodation", "stay", "room", "mess", "dorm", "residence"],
   "schedule":   ["timetable","timing","slots","calendar","routine"],
   "result":     ["marks","grades","score","performance","outcome"],
   "contact":    ["reach","call","email","phone","connect","helpdesk"],

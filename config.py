@@ -9,7 +9,7 @@ ANALYTICS_LOG   = os.path.join(BASE_DIR, "analytics", "logs.csv")
 FRONTEND_DIR    = os.path.join(BASE_DIR, "frontend")
 
 TFIDF_TOP_N          = 3
-CONFIDENCE_THRESHOLD = 0.25
+CONFIDENCE_THRESHOLD = 0.2   # TF-IDF cosine on short FAQs rarely exceeds 0.4
 M01_FAST_PATH_SCORE  = 0.8   # M01 confidence threshold to skip TF-IDF
 CONTEXT_WINDOW       = 3
 
