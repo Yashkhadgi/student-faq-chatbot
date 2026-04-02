@@ -1,13 +1,111 @@
 {
   "intents": [
-    {"label":"admission",   "examples":["how to apply","admission form","enrollment date","registration process"]},
-    {"label":"fee",         "examples":["fee structure","how much is tuition","payment details","cost of course"]},
-    {"label":"exam",        "examples":["when are exams","exam schedule","test dates","examination timetable"]},
-    {"label":"schedule",    "examples":["class timetable","lecture timing","when is CS-301","room number"]},
-    {"label":"contact",     "examples":["contact office","email address","phone number","how to reach"]},
-    {"label":"hostel",      "examples":["hostel facility","accommodation available","boys hostel","room fees"]},
-    {"label":"attendance",  "examples":["attendance requirement","minimum attendance","how many classes"]},
-    {"label":"scholarship", "examples":["apply for scholarship","financial aid","merit scholarship"]},
-    {"label":"result",      "examples":["when is result","check marks","semester result","grade announcement"]}
+    {
+      "label": "admission",
+      "examples": [
+        "how to apply", "admission form", "enrollment date", "registration process",
+        "how do i get admission", "admission kya hai process", "last date to apply online",
+        "i want to take btech admission", "how to enroll for mba", "kya admission chal rahe hai",
+        "admission open hai kya", "how to submit application", "btech ke liye apply karna hai",
+        "where to find enrollment forms", "symbiosis admission procedure"
+      ]
+    },
+    {
+      "label": "fee",
+      "examples": [
+        "fee structure", "how much is tuition", "payment details", "cost of course",
+        "fees kitni hai", "btech ki fee kya hai", "hostel aur tuition charges",
+        "when is the last date to pay fees", "fee payment link kahan hai", "what is the amount to be paid",
+        "per semester kitna paise dene hai", "how can i pay my college dues", "online fee payment",
+        "rupees for this semester", "total expense kitna hoga"
+      ]
+    },
+    {
+      "label": "exam",
+      "examples": [
+        "when are exams", "exam schedule", "test dates", "examination timetable",
+        "kab hai exam", "mid sem exam kab se hai", "final viva dates", "atkt ka exam kab hai",
+        "practical schedule", "when will end semester papers start", "exam form last date",
+        "kya kal exam hai", "tell me examination details", "papers ki dates", "where is the exam schedule"
+      ]
+    },
+    {
+      "label": "schedule",
+      "examples": [
+        "class timetable", "lecture timing", "when is CS-301", "room number",
+        "class kab se hai", "aaj class hai kya", "lecture ki details", "when is the next class",
+        "tell me about my schedule today", "meri class kahan hai", "which lab for practical",
+        "routine for the day", "monday timetable kaise milega", "what time does college start", "timetable bhejdo"
+      ]
+    },
+    {
+      "label": "contact",
+      "examples": [
+        "contact office", "email address", "phone number", "how to reach",
+        "helpdesk details", "who should i call for help", "admin ka phone number",
+        "principal office kaise connect kare", "email to registrar", "kisse baat karni padegi",
+        "number de do helpdesk ka", "how to contact admin block", "official mail id",
+        "query solve karne ke liye helpline", "is there any complaint number"
+      ]
+    },
+    {
+      "label": "hostel",
+      "examples": [
+        "hostel facility", "accommodation available", "boys hostel", "room fees",
+        "hostel fees kitna hai", "pg accommodation", "hostel mein admission kaise lun",
+        "mess ka khana kaisa hai", "are double rooms available", "hostel warden ka number",
+        "campus stay facility", "girls hostel available hai kya", "mess timings",
+        "tell me about boarding charges", "kahan reh sakte hain college ke pas"
+      ]
+    },
+    {
+      "label": "attendance",
+      "examples": [
+        "attendance requirement", "minimum attendance", "how many classes", "present lagao",
+        "attendance kitni chahiye", "75% rule kya hai", "kya proxy chalti hai",
+        "kitni class miss kar sakte hain", "where to check my attendance", "shortage of attendance consequences",
+        "portal pe attendance update nahi hui", "medical leave kaise lagaye", "how to check presence",
+        "is regular attendance mandatory", "attendance kam hai toh kya hoga"
+      ]
+    },
+    {
+      "label": "scholarship",
+      "examples": [
+        "apply for scholarship", "financial aid", "merit scholarship", "grant details",
+        "scholarship milti hai kya", "obc students ke liye form", "how to get fee waiver",
+        "merit based financial assistance", "stipend amount", "scholarship ki last date",
+        "ews quota scholarship details", "kisko milta hai award", "what are the eligibility criteria for aid",
+        "government schemes for fees", "apply for freeship"
+      ]
+    },
+    {
+      "label": "result",
+      "examples": [
+        "when is result", "check marks", "semester result", "grade announcement",
+        "result kab aayega", "mera cgpa kya hai", "how to check my sgpa", "internal marks kahan dekhu",
+        "mid term scores out", "kya marks aagaye hai", "portal pe score nahi dikh raha",
+        "how did i perform", "evaluation of paper", "result declare hua kya", "marksheet kab milegi"
+      ]
+    },
+    {
+      "label": "library",
+      "examples": [
+        "library timings", "return books", "issue limit for students", "reading room hours",
+        "library kab open hoti hai", "fine for late return", "kitni books issue karwa sakte hain",
+        "catalogue of publications", "can i sit in reading room at night", "digital library access",
+        "library card kaise banaye", "where is the main library located", "reference section rules",
+        "weekend library time", "library se noc kaise len"
+      ]
+    },
+    {
+      "label": "placement",
+      "examples": [
+        "placement details", "companies coming", "what is highest package", "job opportunities",
+        "internship kaise milegi", "placement cell contact", "average salary kitna hai",
+        "which companies recruit here", "hr round process", "noc for summer internship",
+        "placement ki tyari", "are placements good", "on campus drive kab hoti hai",
+        "what are the total offers made", "how to register for campus recruitment"
+      ]
+    }
   ]
 }

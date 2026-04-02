@@ -36,6 +36,7 @@ def extract_entities(raw_query: str) -> dict:
         "date":     [],
         "semester": [],
         "dept":     [],
+        "year":     [],
     }
     q_lower = raw_query.lower()
 
@@ -78,6 +79,23 @@ def extract_entities(raw_query: str) -> dict:
             depts.append(dept_name)
     entities["dept"] = depts
 
+    # ── Year extraction (FY, SY, TY, final year, first year) ──────────────────
+    years: list[str] = []
+    
+    for m in re.finditer(r"\b(fy|sy|ty)\b", q_lower):
+        mapping = {"fy": "1", "sy": "2", "ty": "3"}
+        years.append(mapping[m.group(1)])
+        
+    if re.search(r"\b(final)\s+year\b", q_lower):
+        years.append("4")
+        
+    for word, num in _ORDINAL_MAP.items():
+        pattern = rf"\b{re.escape(word)}\s+year\b"
+        if re.search(pattern, q_lower):
+            years.append(num)
+            
+    entities["year"] = list(dict.fromkeys(years))
+
     return entities
 
 
@@ -87,6 +105,8 @@ def enrich_answer_with_entities(answer: str, entities: dict) -> str:
     E.g., "For SEM 5 (CS): The BTech fee is..."
     """
     prefix_parts = []
+    if entities.get("year"):
+        prefix_parts.append(f"Year {', '.join(entities['year'])}")
     if entities.get("semester"):
         prefix_parts.append(f"SEM {', '.join(entities['semester'])}")
     if entities.get("dept"):

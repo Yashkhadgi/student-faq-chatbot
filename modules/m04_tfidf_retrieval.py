@@ -5,9 +5,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from utils.helpers import load_faqs
 from config import TFIDF_TOP_N
 
-# ── Fit vectorizer once on all FAQ questions + tags ───────────────────────────
+# ── Fit vectorizer once on all FAQ questions + tags + answers ─────────────────
 _faqs   = load_faqs()
-_corpus = [faq["question"] + " " + " ".join(faq.get("tags", [])) for faq in _faqs]
+_corpus = [faq['question'] + ' ' + ' '.join(faq.get('tags', [])) + ' ' + faq.get('answer', '') for faq in _faqs]
 _vectorizer   = TfidfVectorizer()
 _faq_matrix   = _vectorizer.fit_transform(_corpus)   # shape: (n_faqs, vocab)
 

@@ -11,7 +11,8 @@ _DOMAIN_KEEP = {
     "fee", "fees", "exam", "exams", "hostel", "admission", "admissions",
     "scholarship", "attendance", "result", "results", "library", "contact",
     "schedule", "timetable", "semester", "sem", "date", "deadline", "document",
-    "documents", "marks", "grades", "portal", "apply", "application"
+    "documents", "marks", "grades", "portal", "apply", "application",
+    "btech", "mtech", "mba", "cgpa", "sgpa", "noc", "tc", "lc", "obc", "scst", "ews"
 }
 
 # Download required NLTK data quietly (no-op if already present)
@@ -33,7 +34,7 @@ def _normalize_spelling(text: str) -> str:
         return text
 
 
-def preprocess(raw_query: str, correct_spelling: bool = True) -> dict:
+def preprocess(raw_query: str, correct_spelling: bool = False) -> dict:
     """
     Full preprocessing pipeline.
 

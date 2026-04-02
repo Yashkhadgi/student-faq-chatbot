@@ -1,12 +1,926 @@
 {
-  "fee":        ["tuition", "payment", "charges", "cost", "fees", "price"],
-  "exam":       ["test","assessment","evaluation","paper","examination"],
-  "admission":  ["join", "entrance", "enrollment", "apply", "registration", "admission"],
-  "hostel":     ["accommodation", "stay", "room", "mess", "dorm", "residence"],
-  "schedule":   ["timetable","timing","slots","calendar","routine"],
-  "result":     ["marks","grades","score","performance","outcome"],
-  "contact":    ["reach","call","email","phone","connect","helpdesk"],
-  "scholarship":["financial aid","grant","stipend","bursary","award"],
-  "attendance": ["presence","participation","regularity"],
-  "documents":  ["certificates","papers","proof","records","marksheet"]
+  "fee": [
+    "fees",
+    "tuition",
+    "payment",
+    "charges",
+    "cost",
+    "price",
+    "money",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "fees": [
+    "fee",
+    "tuition",
+    "payment",
+    "charges",
+    "cost",
+    "price",
+    "money",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "tuition": [
+    "fee",
+    "fees",
+    "payment",
+    "charges",
+    "cost",
+    "price",
+    "money",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "payment": [
+    "fee",
+    "fees",
+    "tuition",
+    "charges",
+    "cost",
+    "price",
+    "money",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "charges": [
+    "fee",
+    "fees",
+    "tuition",
+    "payment",
+    "cost",
+    "price",
+    "money",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "cost": [
+    "fee",
+    "fees",
+    "tuition",
+    "payment",
+    "charges",
+    "price",
+    "money",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "price": [
+    "fee",
+    "fees",
+    "tuition",
+    "payment",
+    "charges",
+    "cost",
+    "money",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "money": [
+    "fee",
+    "fees",
+    "tuition",
+    "payment",
+    "charges",
+    "cost",
+    "price",
+    "rupees",
+    "amount",
+    "paisa"
+  ],
+  "rupees": [
+    "fee",
+    "fees",
+    "tuition",
+    "payment",
+    "charges",
+    "cost",
+    "price",
+    "money",
+    "amount",
+    "paisa"
+  ],
+  "amount": [
+    "fee",
+    "fees",
+    "tuition",
+    "payment",
+    "charges",
+    "cost",
+    "price",
+    "money",
+    "rupees",
+    "paisa"
+  ],
+  "paisa": [
+    "fee",
+    "fees",
+    "tuition",
+    "payment",
+    "charges",
+    "cost",
+    "price",
+    "money",
+    "rupees",
+    "amount"
+  ],
+  "exam": [
+    "exams",
+    "test",
+    "assessment",
+    "evaluation",
+    "paper",
+    "examination",
+    "viva",
+    "practical"
+  ],
+  "exams": [
+    "exam",
+    "test",
+    "assessment",
+    "evaluation",
+    "paper",
+    "examination",
+    "viva",
+    "practical"
+  ],
+  "test": [
+    "exam",
+    "exams",
+    "assessment",
+    "evaluation",
+    "paper",
+    "examination",
+    "viva",
+    "practical"
+  ],
+  "assessment": [
+    "exam",
+    "exams",
+    "test",
+    "evaluation",
+    "paper",
+    "examination",
+    "viva",
+    "practical"
+  ],
+  "evaluation": [
+    "exam",
+    "exams",
+    "test",
+    "assessment",
+    "paper",
+    "examination",
+    "viva",
+    "practical"
+  ],
+  "paper": [
+    "exam",
+    "exams",
+    "test",
+    "assessment",
+    "evaluation",
+    "examination",
+    "viva",
+    "practical"
+  ],
+  "examination": [
+    "exam",
+    "exams",
+    "test",
+    "assessment",
+    "evaluation",
+    "paper",
+    "viva",
+    "practical"
+  ],
+  "viva": [
+    "exam",
+    "exams",
+    "test",
+    "assessment",
+    "evaluation",
+    "paper",
+    "examination",
+    "practical"
+  ],
+  "practical": [
+    "exam",
+    "exams",
+    "test",
+    "assessment",
+    "evaluation",
+    "paper",
+    "examination",
+    "viva"
+  ],
+  "admission": [
+    "admissions",
+    "apply",
+    "enrollment",
+    "registration",
+    "joining",
+    "entrance"
+  ],
+  "admissions": [
+    "admission",
+    "apply",
+    "enrollment",
+    "registration",
+    "joining",
+    "entrance"
+  ],
+  "apply": [
+    "admission",
+    "admissions",
+    "enrollment",
+    "registration",
+    "joining",
+    "entrance"
+  ],
+  "enrollment": [
+    "admission",
+    "admissions",
+    "apply",
+    "registration",
+    "joining",
+    "entrance"
+  ],
+  "registration": [
+    "admission",
+    "admissions",
+    "apply",
+    "enrollment",
+    "joining",
+    "entrance"
+  ],
+  "joining": [
+    "admission",
+    "admissions",
+    "apply",
+    "enrollment",
+    "registration",
+    "entrance"
+  ],
+  "entrance": [
+    "admission",
+    "admissions",
+    "apply",
+    "enrollment",
+    "registration",
+    "joining"
+  ],
+  "hostel": [
+    "accommodation",
+    "stay",
+    "room",
+    "mess",
+    "dorm",
+    "residence",
+    "pg",
+    "lodge"
+  ],
+  "accommodation": [
+    "hostel",
+    "stay",
+    "room",
+    "mess",
+    "dorm",
+    "residence",
+    "pg",
+    "lodge"
+  ],
+  "stay": [
+    "hostel",
+    "accommodation",
+    "room",
+    "mess",
+    "dorm",
+    "residence",
+    "pg",
+    "lodge"
+  ],
+  "room": [
+    "hostel",
+    "accommodation",
+    "stay",
+    "mess",
+    "dorm",
+    "residence",
+    "pg",
+    "lodge"
+  ],
+  "mess": [
+    "hostel",
+    "accommodation",
+    "stay",
+    "room",
+    "dorm",
+    "residence",
+    "pg",
+    "lodge"
+  ],
+  "dorm": [
+    "hostel",
+    "accommodation",
+    "stay",
+    "room",
+    "mess",
+    "residence",
+    "pg",
+    "lodge"
+  ],
+  "residence": [
+    "hostel",
+    "accommodation",
+    "stay",
+    "room",
+    "mess",
+    "dorm",
+    "pg",
+    "lodge"
+  ],
+  "pg": [
+    "hostel",
+    "accommodation",
+    "stay",
+    "room",
+    "mess",
+    "dorm",
+    "residence",
+    "lodge"
+  ],
+  "lodge": [
+    "hostel",
+    "accommodation",
+    "stay",
+    "room",
+    "mess",
+    "dorm",
+    "residence",
+    "pg"
+  ],
+  "schedule": [
+    "timetable",
+    "timing",
+    "slots",
+    "calendar",
+    "routine",
+    "class",
+    "lecture"
+  ],
+  "timetable": [
+    "schedule",
+    "timing",
+    "slots",
+    "calendar",
+    "routine",
+    "class",
+    "lecture"
+  ],
+  "timing": [
+    "schedule",
+    "timetable",
+    "slots",
+    "calendar",
+    "routine",
+    "class",
+    "lecture"
+  ],
+  "slots": [
+    "schedule",
+    "timetable",
+    "timing",
+    "calendar",
+    "routine",
+    "class",
+    "lecture"
+  ],
+  "calendar": [
+    "schedule",
+    "timetable",
+    "timing",
+    "slots",
+    "routine",
+    "class",
+    "lecture"
+  ],
+  "routine": [
+    "schedule",
+    "timetable",
+    "timing",
+    "slots",
+    "calendar",
+    "class",
+    "lecture"
+  ],
+  "class": [
+    "schedule",
+    "timetable",
+    "timing",
+    "slots",
+    "calendar",
+    "routine",
+    "lecture"
+  ],
+  "lecture": [
+    "schedule",
+    "timetable",
+    "timing",
+    "slots",
+    "calendar",
+    "routine",
+    "class"
+  ],
+  "result": [
+    "results",
+    "marks",
+    "grades",
+    "score",
+    "performance",
+    "outcome",
+    "cgpa",
+    "sgpa"
+  ],
+  "results": [
+    "result",
+    "marks",
+    "grades",
+    "score",
+    "performance",
+    "outcome",
+    "cgpa",
+    "sgpa"
+  ],
+  "marks": [
+    "result",
+    "results",
+    "grades",
+    "score",
+    "performance",
+    "outcome",
+    "cgpa",
+    "sgpa"
+  ],
+  "grades": [
+    "result",
+    "results",
+    "marks",
+    "score",
+    "performance",
+    "outcome",
+    "cgpa",
+    "sgpa"
+  ],
+  "score": [
+    "result",
+    "results",
+    "marks",
+    "grades",
+    "performance",
+    "outcome",
+    "cgpa",
+    "sgpa"
+  ],
+  "performance": [
+    "result",
+    "results",
+    "marks",
+    "grades",
+    "score",
+    "outcome",
+    "cgpa",
+    "sgpa"
+  ],
+  "outcome": [
+    "result",
+    "results",
+    "marks",
+    "grades",
+    "score",
+    "performance",
+    "cgpa",
+    "sgpa"
+  ],
+  "cgpa": [
+    "result",
+    "results",
+    "marks",
+    "grades",
+    "score",
+    "performance",
+    "outcome",
+    "sgpa"
+  ],
+  "sgpa": [
+    "result",
+    "results",
+    "marks",
+    "grades",
+    "score",
+    "performance",
+    "outcome",
+    "cgpa"
+  ],
+  "contact": [
+    "reach",
+    "call",
+    "email",
+    "phone",
+    "connect",
+    "helpdesk",
+    "office"
+  ],
+  "reach": [
+    "contact",
+    "call",
+    "email",
+    "phone",
+    "connect",
+    "helpdesk",
+    "office"
+  ],
+  "call": [
+    "contact",
+    "reach",
+    "email",
+    "phone",
+    "connect",
+    "helpdesk",
+    "office"
+  ],
+  "email": [
+    "contact",
+    "reach",
+    "call",
+    "phone",
+    "connect",
+    "helpdesk",
+    "office"
+  ],
+  "phone": [
+    "contact",
+    "reach",
+    "call",
+    "email",
+    "connect",
+    "helpdesk",
+    "office"
+  ],
+  "connect": [
+    "contact",
+    "reach",
+    "call",
+    "email",
+    "phone",
+    "helpdesk",
+    "office"
+  ],
+  "helpdesk": [
+    "contact",
+    "reach",
+    "call",
+    "email",
+    "phone",
+    "connect",
+    "office"
+  ],
+  "office": [
+    "contact",
+    "reach",
+    "call",
+    "email",
+    "phone",
+    "connect",
+    "helpdesk"
+  ],
+  "scholarship": [
+    "financial aid",
+    "grant",
+    "stipend",
+    "bursary",
+    "award",
+    "waiver"
+  ],
+  "financial aid": [
+    "scholarship",
+    "grant",
+    "stipend",
+    "bursary",
+    "award",
+    "waiver"
+  ],
+  "grant": [
+    "scholarship",
+    "financial aid",
+    "stipend",
+    "bursary",
+    "award",
+    "waiver"
+  ],
+  "stipend": [
+    "scholarship",
+    "financial aid",
+    "grant",
+    "bursary",
+    "award",
+    "waiver"
+  ],
+  "bursary": [
+    "scholarship",
+    "financial aid",
+    "grant",
+    "stipend",
+    "award",
+    "waiver"
+  ],
+  "award": [
+    "scholarship",
+    "financial aid",
+    "grant",
+    "stipend",
+    "bursary",
+    "waiver"
+  ],
+  "waiver": [
+    "scholarship",
+    "financial aid",
+    "grant",
+    "stipend",
+    "bursary",
+    "award"
+  ],
+  "attendance": [
+    "presence",
+    "participation",
+    "regularity",
+    "absent",
+    "proxy"
+  ],
+  "presence": [
+    "attendance",
+    "participation",
+    "regularity",
+    "absent",
+    "proxy"
+  ],
+  "participation": [
+    "attendance",
+    "presence",
+    "regularity",
+    "absent",
+    "proxy"
+  ],
+  "regularity": [
+    "attendance",
+    "presence",
+    "participation",
+    "absent",
+    "proxy"
+  ],
+  "absent": [
+    "attendance",
+    "presence",
+    "participation",
+    "regularity",
+    "proxy"
+  ],
+  "proxy": [
+    "attendance",
+    "presence",
+    "participation",
+    "regularity",
+    "absent"
+  ],
+  "document": [
+    "documents",
+    "certificates",
+    "papers",
+    "proof",
+    "records",
+    "marksheet",
+    "tc",
+    "lc",
+    "noc"
+  ],
+  "documents": [
+    "document",
+    "certificates",
+    "papers",
+    "proof",
+    "records",
+    "marksheet",
+    "tc",
+    "lc",
+    "noc"
+  ],
+  "certificates": [
+    "document",
+    "documents",
+    "papers",
+    "proof",
+    "records",
+    "marksheet",
+    "tc",
+    "lc",
+    "noc"
+  ],
+  "papers": [
+    "document",
+    "documents",
+    "certificates",
+    "proof",
+    "records",
+    "marksheet",
+    "tc",
+    "lc",
+    "noc"
+  ],
+  "proof": [
+    "document",
+    "documents",
+    "certificates",
+    "papers",
+    "records",
+    "marksheet",
+    "tc",
+    "lc",
+    "noc"
+  ],
+  "records": [
+    "document",
+    "documents",
+    "certificates",
+    "papers",
+    "proof",
+    "marksheet",
+    "tc",
+    "lc",
+    "noc"
+  ],
+  "marksheet": [
+    "document",
+    "documents",
+    "certificates",
+    "papers",
+    "proof",
+    "records",
+    "tc",
+    "lc",
+    "noc"
+  ],
+  "tc": [
+    "document",
+    "documents",
+    "certificates",
+    "papers",
+    "proof",
+    "records",
+    "marksheet",
+    "lc",
+    "noc"
+  ],
+  "lc": [
+    "document",
+    "documents",
+    "certificates",
+    "papers",
+    "proof",
+    "records",
+    "marksheet",
+    "tc",
+    "noc"
+  ],
+  "noc": [
+    "document",
+    "documents",
+    "certificates",
+    "papers",
+    "proof",
+    "records",
+    "marksheet",
+    "tc",
+    "lc"
+  ],
+  "library": [
+    "books",
+    "reading room",
+    "catalogue",
+    "issue",
+    "return"
+  ],
+  "books": [
+    "library",
+    "reading room",
+    "catalogue",
+    "issue",
+    "return"
+  ],
+  "reading room": [
+    "library",
+    "books",
+    "catalogue",
+    "issue",
+    "return"
+  ],
+  "catalogue": [
+    "library",
+    "books",
+    "reading room",
+    "issue",
+    "return"
+  ],
+  "issue": [
+    "library",
+    "books",
+    "reading room",
+    "catalogue",
+    "return"
+  ],
+  "return": [
+    "library",
+    "books",
+    "reading room",
+    "catalogue",
+    "issue"
+  ],
+  "placement": [
+    "job",
+    "internship",
+    "campus",
+    "company",
+    "recruit",
+    "offer",
+    "hr"
+  ],
+  "job": [
+    "placement",
+    "internship",
+    "campus",
+    "company",
+    "recruit",
+    "offer",
+    "hr"
+  ],
+  "internship": [
+    "placement",
+    "job",
+    "campus",
+    "company",
+    "recruit",
+    "offer",
+    "hr"
+  ],
+  "campus": [
+    "placement",
+    "job",
+    "internship",
+    "company",
+    "recruit",
+    "offer",
+    "hr"
+  ],
+  "company": [
+    "placement",
+    "job",
+    "internship",
+    "campus",
+    "recruit",
+    "offer",
+    "hr"
+  ],
+  "recruit": [
+    "placement",
+    "job",
+    "internship",
+    "campus",
+    "company",
+    "offer",
+    "hr"
+  ],
+  "offer": [
+    "placement",
+    "job",
+    "internship",
+    "campus",
+    "company",
+    "recruit",
+    "hr"
+  ],
+  "hr": [
+    "placement",
+    "job",
+    "internship",
+    "campus",
+    "company",
+    "recruit",
+    "offer"
+  ]
 }

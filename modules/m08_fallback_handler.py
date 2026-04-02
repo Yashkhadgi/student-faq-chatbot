@@ -24,6 +24,12 @@ def handle_fallback(query: str, candidates: list) -> str:
     # Filter candidates that have at least a tiny signal
     weak_candidates = [c for c in candidates if c["score"] > _LOW_CONFIDENCE_THRESHOLD]
 
+    # Emergency escalation bypass
+    q_lower = query.lower()
+    emergency_keywords = ["urgent", "emergency", "stuck", "help", "problem", "issue"]
+    if any(word in q_lower for word in emergency_keywords):
+        return FALLBACK_ESCALATE
+
     if weak_candidates:
         suggestion_lines = "\n".join(
             f"  {i + 1}. {c['question']}"
